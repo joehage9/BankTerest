@@ -1,0 +1,26 @@
+CREATE SCHEMA `banterest` ;
+
+
+CREATE TABLE `banterest`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `First_name` VARCHAR(45) NULL,
+  `Last_name` VARCHAR(45) NULL,
+  `Email` VARCHAR(45) NULL,
+  `Password` VARCHAR(45) NULL,
+  `DoB` DATE NULL,
+  PRIMARY KEY (`id`));
+
+
+CREATE TABLE `banterest`.`accounts` (
+  `idaccounts` INT NOT NULL AUTO_INCREMENT,
+  `iduser` INT NULL,
+  `amount` INT NULL,
+  PRIMARY KEY (`idaccounts`),
+  INDEX `iduser_idx` (`iduser` ASC) VISIBLE,
+  CONSTRAINT `iduser`
+    FOREIGN KEY (`iduser`)
+    REFERENCES `banterest`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
